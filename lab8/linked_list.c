@@ -20,6 +20,36 @@ Item* insert_front(Item* listptr, int value){
     return newitem;
 }
 
+int get_index(Item* listptr, int value)
+{
+    int ctr = 0;
+    Item* curr;
+    for (curr = listptr; curr != NULL; curr = curr->rest)
+    {
+        if (curr->value == value)
+            return ctr;
+        ctr++;
+    }
+    return -1;
+}
+
+Item* remove_item(Item* listptr, int value)
+{
+    if (listptr == NULL)
+        return NULL;
+    if (listptr->value == value)
+    {
+        Item* temp;
+        temp = listptr->rest;
+        free(listptr);
+        return temp;
+    }
+    Item*temp = remove_item(listptr->rest,value);
+    if (temp == NULL)
+        return NULL;
+    else return temp;
+}
+
 
 int get(Item* listptr, int index){
     int ctr = 0;
