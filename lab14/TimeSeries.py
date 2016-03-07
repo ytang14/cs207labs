@@ -1,6 +1,5 @@
 import numpy as np
 from lazy import *
-
 class TimeSeries():
     '''
     """
@@ -78,7 +77,15 @@ DESCRIPTION
     @lazy
     def lazy(self):
         return self
-
+    def itervalues(self):
+        for v in self._values:
+            yield v
+    def itertimes(self):
+        for t in self._times:
+            yield t
+    def iteritemes(self):
+        for t,v in zip(self._times,self._values):
+            yield (t,v)
     def __len__(self):
         return len(self._TimeSeries[0])
     
